@@ -1,0 +1,76 @@
+.baristas {
+    width: 100%;
+    float: left;
+    overflow: auto;
+    padding-top: 48px;
+    margin-bottom: 100px;
+
+    .baristas-list {
+        float: left;
+        width: 100%;
+        width: max-content;
+
+        li {
+            margin-right: 20px;
+            width: 150px;
+            float: left;
+            margin-bottom: 20px;
+
+            .card-barista {
+                background-color: #fff;
+                width: 100%;
+                border-radius: 10px;
+                display: block;
+                max-height: 180px;
+                min-height: 160px;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+                position: relative;
+                padding-top: 54px;
+
+                .barista-img {
+                    border-radius: 50%;
+                    width: 90px;
+                    position: absolute;
+                    left: 0px;
+                    top: -35px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    right: 0px;
+                }
+
+                .instagram-icon {
+                    width: 15px;
+                    float: left;
+                    margin-top: 2px;
+                }
+
+                h2 {
+                    text-align: center;
+                    margin-top: 5px;
+                    color: #111;
+                    font-size: 17px;
+                    font-weight: bolder;
+                }
+
+                p {
+                    text-align: center;
+                    margin-top: 0px;
+                    padding-bottom: 10px;
+                    color: #111;
+                    font-size: 15px;
+                }
+
+                span {
+                    text-align: center;
+                    margin-top: 0px;
+                    color: #111;
+                    font-size: 13px;
+                    float: left;
+                    width: 100%;
+                    padding: 2px 13px;
+                    color: rgba(12, 35, 64, 0.8509803922);
+                }
+            }
+        }
+    }
+}

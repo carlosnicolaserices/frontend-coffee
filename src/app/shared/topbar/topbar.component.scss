@@ -1,0 +1,10 @@
+header {
+    /* Esto empuja el header hacia abajo si hay una cámara en la pantalla (iPhone X+) */
+    padding-top: env(safe-area-inset-top);
+    /* Ajuste para que el padding no afecte la altura visual del contenido */
+    box-sizing: content-box;
+}
+.bg-color-cup{
+    background-color:#0c2340;
+    box-shadow: 0px 2px 4px #1111114a
+}

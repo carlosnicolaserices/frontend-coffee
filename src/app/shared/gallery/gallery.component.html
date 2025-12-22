@@ -1,0 +1,23 @@
+<div class="gallery-wrapper" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+  <div class="slider-track" [style.transform]="'translateX(-' + currentIndex() * 100 + '%)'">
+    @for (item of items(); track item.id) {
+    <div class="slide-item">
+      <img [ngSrc]="item.src" [alt]="item.alt" fill priority class="slide-img" />
+
+      <div class="bottom-gradient"></div>
+    </div>
+    }
+  </div>
+
+  <div class="dots-container">
+    @for (item of items(); track item.id; let i = $index) {
+    <button
+      class="dot"
+      [class.active]="i === currentIndex()"
+      (click)="goToIndex(i)"
+      type="button"
+      [attr.aria-label]="'Ir a imagen ' + (i + 1)"
+    ></button>
+    }
+  </div>
+</div>

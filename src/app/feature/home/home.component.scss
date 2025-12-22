@@ -1,0 +1,115 @@
+.background-home {
+    background-color: #0C2340;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    height: 215px;
+    width: 100%;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+}
+
+.home-component {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    float: left;
+}
+
+.ubicacion {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    float: left;
+    padding-top: 27px;
+    padding-bottom: 12px;
+}
+
+.icono-map {
+    float: left;
+}
+
+.ubicacion-text {
+    float: left;
+    color: #fff;
+    font-size: 16px;
+    padding: 0px 0px 0px 10px;
+}
+
+.titulo-de-bienvenida {
+    float: left;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px 16px 20px 16px;
+    line-height: 31px;
+
+    span {
+        float: left;
+        width: 100%
+    }
+}
+
+.search-bar-component {
+    width: 100%;
+    float: left;
+    margin-top: 14px;
+    border-radius: 10px;
+    color: #0C2340;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.special-coffee-component {
+    width: 100%;
+    float: left;
+    background-color: #fff;
+    margin-top: 14px;
+    border-radius: 10px;
+    padding: 10px 0px;
+    margin-top: 16px;
+}
+
+.filter-category-component {
+    width: 100%;
+    float: left;
+    margin-top: 14px;
+    padding: 0px 20px;
+    margin-top: 16px;
+    overflow: auto;
+}
+
+.place-experience-component {
+    width: 100%;
+    float: left;
+    margin-top: 14px;
+    padding: 10px 20px;
+    margin-top: 16px;
+    overflow: auto;
+}
+
+.place-experience-component {
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+    padding: 10px 20px;
+    overflow: auto;
+}
+
+.baristas-component {
+    width: 100%;
+    float: left;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 10px 0px 10px 20px;
+}
+
+.tostaduria-component {
+    width: 100%;
+    float: left;
+    background-color: #fff;
+    padding: 10px 0px;
+    margin-top: 16px;
+    padding-right: 0px;
+    padding-bottom: 20px;
+}

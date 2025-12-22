@@ -1,0 +1,16 @@
+// Search bar
+.search-bar{
+    width: 100%;
+    float: left;
+    padding: 0px 16px;
+    .ubicacion-text{
+        background-color: #fff;
+        float: left;
+        color: #0C2340;
+        font-size: 12px;
+        width: 100%;
+        padding: 16px 17px;
+        box-shadow: 0px 0px 13px #72727214;
+        border-radius: 10px;
+    }
+}

@@ -1,0 +1,230 @@
+# mocks/stubby-endpoints.yaml
+
+- request:
+    url: ^/coffee-shops$
+    method: GET
+  response:
+    status: 200
+    headers:
+      content-type: application/json
+      # Headers necesarios para que Angular acepte la respuesta (CORS)
+      access-control-allow-origin: '*'
+      access-control-allow-methods: 'GET, POST, OPTIONS, PUT, DELETE'
+      access-control-allow-headers: 'content-type'
+    # Usamos el símbolo '>' para pegar el JSON limpio como bloque de texto
+    body: >
+      [
+          {
+              "id": "store_001",
+              "nombre": "Café Nativo",
+              "slug": "cafe-nativo-edmundo-larenas",
+              "activo": true,
+              "descripcion": "Cafetería de especialidad ubicada en el corazón del barrio universitario. Ambiente rústico y acogedor.",
+              "marca": {
+                  "nombre": "Nativo",
+                  "url_logo": "https://ui-avatars.com/api/?name=Nativo&background=5D4037&color=fff&size=128",
+                  "sitio_web": "https://cafenativo.cl"
+              },
+              "imagenes": [
+                  "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=500&auto=format&fit=crop",
+                  "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=500&auto=format&fit=crop"
+              ],
+              "valoracion": {
+                  "promedio": 4.5,
+                  "cantidad_votos": 85
+              },
+              "nivel_precio": 2,
+              "ubicacion": {
+                  "type": "Point",
+                  "coordinates": [
+                      -73.0375,
+                      -36.8298
+                  ],
+                  "direccion": {
+                      "calle": "Edmundo Larenas 112",
+                      "comuna": "Concepción",
+                      "region": "Biobío",
+                      "texto_visible": "Edmundo Larenas 112, Barrio Universitario"
+                  }
+              },
+              "categorias": [
+                  "cafeteria",
+                  "especialidad"
+              ],
+              "caracteristicas": {
+                  "wifi": true,
+                  "admite_mascotas": false,
+                  "opcion_vegana": true,
+                  "enchufes": true,
+                  "terraza": true
+              },
+              "horario_atencion": [
+                  { "dia": 1, "apertura": "09:00", "cierre": "19:00" },
+                  { "dia": 2, "apertura": "09:00", "cierre": "19:00" },
+                  { "dia": 3, "apertura": "09:00", "cierre": "19:00" },
+                  { "dia": 4, "apertura": "09:00", "cierre": "19:00" },
+                  { "dia": 5, "apertura": "09:00", "cierre": "19:00" }
+              ],
+              "contacto": {
+                  "telefono": "+56412233445",
+                  "instagram": "cafenativoccp"
+              }
+          },
+          {
+              "id": "store_002",
+              "nombre": "Starbucks - Plaza Independencia",
+              "slug": "starbucks-plaza-independencia",
+              "activo": true,
+              "descripcion": "La experiencia Starbucks en el centro de la ciudad. Café, frappuccinos y snacks.",
+              "marca": {
+                  "nombre": "Starbucks",
+                  "url_logo": "https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg",
+                  "sitio_web": "https://starbucks.cl"
+              },
+              "imagenes": [
+                  "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=500&auto=format&fit=crop"
+              ],
+              "valoracion": {
+                  "promedio": 4.2,
+                  "cantidad_votos": 340
+              },
+              "nivel_precio": 3,
+              "ubicacion": {
+                  "type": "Point",
+                  "coordinates": [
+                      -73.0503,
+                      -36.8270
+                  ],
+                  "direccion": {
+                      "calle": "Barros Arana 560",
+                      "comuna": "Concepción",
+                      "region": "Biobío",
+                      "texto_visible": "Barros Arana 560, Frente a la Plaza"
+                  }
+              },
+              "categorias": [
+                  "cafeteria",
+                  "franquicia"
+              ],
+              "caracteristicas": {
+                  "wifi": true,
+                  "admite_mascotas": false,
+                  "opcion_vegana": true,
+                  "enchufes": true,
+                  "terraza": false
+              },
+              "horario_atencion": [
+                  { "dia": 1, "apertura": "07:30", "cierre": "21:00" },
+                  { "dia": 6, "apertura": "09:00", "cierre": "21:00" },
+                  { "dia": 0, "apertura": "10:00", "cierre": "20:00" }
+              ],
+              "contacto": {
+                  "telefono": "+56221234567",
+                  "instagram": "starbuckschile"
+              }
+          },
+          {
+              "id": "store_003",
+              "nombre": "Rendibú - Diagonal",
+              "slug": "rendibu-diagonal",
+              "activo": true,
+              "descripcion": "El lugar favorito de los penquistas. Famosos por sus tortas, cheesecakes y buen café.",
+              "marca": {
+                  "nombre": "Rendibú",
+                  "url_logo": "https://ui-avatars.com/api/?name=Rendibu&background=E91E63&color=fff&size=128",
+                  "sitio_web": "https://rendibu.cl"
+              },
+              "imagenes": [
+                  "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=500&auto=format&fit=crop",
+                  "https://images.unsplash.com/photo-1463797221720-6b07e6426c24?q=80&w=500&auto=format&fit=crop"
+              ],
+              "valoracion": {
+                  "promedio": 4.9,
+                  "cantidad_votos": 210
+              },
+              "nivel_precio": 2,
+              "ubicacion": {
+                  "type": "Point",
+                  "coordinates": [
+                      -73.0455,
+                      -36.8285
+                  ],
+                  "direccion": {
+                      "calle": "Diagonal Pedro Aguirre Cerda 123",
+                      "comuna": "Concepción",
+                      "region": "Biobío",
+                      "texto_visible": "Diagonal P. Aguirre Cerda 123"
+                  }
+              },
+              "categorias": [
+                  "cafeteria",
+                  "pasteleria"
+              ],
+              "caracteristicas": {
+                  "wifi": true,
+                  "admite_mascotas": true,
+                  "opcion_vegana": true,
+                  "enchufes": false,
+                  "terraza": true
+              },
+              "horario_atencion": [
+                  { "dia": 1, "apertura": "10:00", "cierre": "20:00" },
+                  { "dia": 6, "apertura": "11:00", "cierre": "20:00" }
+              ],
+              "contacto": {
+                  "telefono": "+56987654321",
+                  "instagram": "rendibu"
+              }
+          },
+          {
+              "id": "store_004",
+              "nombre": "Work Café Santander",
+              "slug": "work-cafe-santander-centro",
+              "activo": true,
+              "descripcion": "Espacio de cowork gratuito, internet de alta velocidad y salas de reuniones para clientes.",
+              "marca": {
+                  "nombre": "Santander",
+                  "url_logo": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Banco_Santander_Logotipo.svg",
+                  "sitio_web": "https://santander.cl"
+              },
+              "imagenes": [
+                  "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=500&auto=format&fit=crop"
+              ],
+              "valoracion": {
+                  "promedio": 4.0,
+                  "cantidad_votos": 50
+              },
+              "nivel_precio": 1,
+              "ubicacion": {
+                  "type": "Point",
+                  "coordinates": [
+                      -73.0480,
+                      -36.8260
+                  ],
+                  "direccion": {
+                      "calle": "O'Higgins 500",
+                      "comuna": "Concepción",
+                      "region": "Biobío",
+                      "texto_visible": "Av. O'Higgins 500"
+                  }
+              },
+              "categorias": [
+                  "cowork",
+                  "banco"
+              ],
+              "caracteristicas": {
+                  "wifi": true,
+                  "admite_mascotas": false,
+                  "opcion_vegana": false,
+                  "enchufes": true,
+                  "terraza": false
+              },
+              "horario_atencion": [
+                  { "dia": 1, "apertura": "09:00", "cierre": "18:00" }
+              ],
+              "contacto": {
+                  "telefono": "6003203000",
+                  "instagram": "santanderchile"
+              }
+          }
+      ]

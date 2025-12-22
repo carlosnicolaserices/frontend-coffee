@@ -1,0 +1,91 @@
+.gallery-wrapper {
+    position: relative;
+    width: 100%;
+    height: 350px; // Altura ajustable según tu diseño (ej. 450px o 50vh)
+    overflow: hidden;
+    border-radius: 0 0 32px 32px; // Bordes redondeados inferiores (estilo iOS/Airbnb)
+    background-color: #e5e7eb; // Placeholder gris mientras carga
+
+    // Sombra suave para darle profundidad sobre el contenido blanco inferior
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.1);
+}
+
+// --- Slider Track ---
+.slider-track {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    // Animación de deslizamiento suave
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform; // Optimización de GPU
+}
+
+.slide-item {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+
+    .slide-img {
+        object-fit: cover; // La imagen llena el espacio sin deformarse
+        width: 100%;
+        height: 100%;
+    }
+}
+
+// --- Gradiente inferior sutil ---
+// Necesario para que los puntos blancos se vean si la foto es muy clara
+.bottom-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+// --- Dots Indicators ---
+.dots-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%); // Centrado horizontal perfecto
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+
+    // Opcional: Cápsula difuminada detrás de los dots (Estilo iOS moderno)
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    padding: 6px 10px;
+    border-radius: 12px;
+
+    .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.5); // Punto inactivo semitransparente
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &.active {
+            background-color: white; // Punto activo blanco puro
+            transform: scale(1.3); // Crece un poco
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+        }
+
+        // Aumentar área de click para dedos gordos
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            bottom: -5px;
+            left: -5px;
+            right: -5px;
+        }
+    }
+}

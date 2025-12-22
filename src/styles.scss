@@ -1,10 +1,164 @@
-/* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* DEFINICIÓN DEL TEMA (Design Tokens) */
+:root {
+  /* 1. Fondo Principal (App Background) - Casi negro */
+  --color-bg: #F4F6F8;
+  //   --color-bg: #0C2340;
+
+  /* 2. Superficies (Tarjetas, Modales, Topbar) - Gris oscuro */
+  --color-surface: #1a1a1a;
+
+  /* 3. Color Primario (Marca/Acción) - Dorado Café */
+  --color-primary: #c6a87c;
+
+  /* 4. Color Secundario (Destacados suaves) - Beige suave */
+  --color-secondary: #e3d5ca;
+
+  /* 5. Textos */
+  --color-text-main: #ffffff;
+  /* Títulos */
+  --color-text-body: #d1d5db;
+  /* Párrafos */
+  --color-text-muted: #6b7280;
+  /* Subtítulos / Fechas */
+
+  /* 6. Estados */
+  --color-success: #10b981;
+  --color-error: #ef4444;
+}
+
+/* APLICACIÓN BASE */
 body {
-    background-color: #1a1a1a;
-    /* Fondo oscuro por defecto */
-    color: white;
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  font-family: 'Inter', sans-serif;
+  touch-action: none;
+  /* Ajustes Mobile */
+  -webkit-font-smoothing: antialiased;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+
+  // Ajuste para iPhone X y superiores
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+
+  // Evitar el "rebote" elástico al scrollear en iOS
+  overscroll-behavior-y: none;
+  background-color: #0c2340; // Color de fondo del "borde" nativo
+}
+
+/* DEFINICIÓN GLOBAL DE ICONOS */
+/* Esto habilita los iconos en CUALQUIER componente de la app */
+
+.material-symbols-outlined {
+  // Referencia exacta al nombre de familia que carga Google
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; // Tamaño base estándar
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+
+  /* Ajustes para alineación vertical perfecta con texto */
+  vertical-align: middle;
+
+  /* Configuración de Variable Font (Grosor, Relleno, etc) */
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+/* Opcional: Clase utilitaria para cambiar tamaño si lo necesitas */
+.icon-base {
+  font-size: 2rem !important; // 32px para tus cajas grandes
+}
+
+
+
+
+
+
+// @keyframes fade-in {
+//   from {
+//     opacity: 0;
+//   }
+// }
+
+// @keyframes fade-out {
+//   to {
+//     opacity: 0;
+//   }
+// }
+
+// @keyframes scale-in {
+//   from {
+//     transform: scale(0.95);
+//   }
+// }
+
+// @keyframes scale-out {
+//   to {
+//     transform: scale(1.05);
+//   }
+// }
+
+// ::view-transition-old(root) {
+//   animation:
+//     90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+//     300ms cubic-bezier(0.4, 0, 0.2, 1) both scale-out;
+// }
+
+// ::view-transition-new(root) {
+//   animation:
+//     210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+//     300ms cubic-bezier(0.4, 0, 0.2, 1) both scale-in;
+
+//   mix-blend-mode: normal;
+// }
+
+/* DEFINICIÓN DE KEYFRAMES (La coreografía) */
+// @keyframes slide-out-to-left {
+//   to { transform: translateX(-100%); }
+// }
+
+// @keyframes slide-in-from-right {
+//   from { transform: translateX(100%); }
+// }
+
+// /* APLICACIÓN A LA VIEW TRANSITION */
+// ::view-transition-old(root) {
+//   /* La página vieja se va a la izquierda */
+//   animation: 300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-out-to-left;
+// }
+
+// ::view-transition-new(root) {
+//   /* La página nueva entra desde la derecha */
+//   animation: 300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-in-from-right;
+
+//   /* IMPORTANTE: Evita que se mezclen los colores al superponerse */
+//   mix-blend-mode: normal; 
+// }
+
+
+
+/* Personalización de la View Transition API */
+::view-transition-old(root),
+::view-transition-new(root) {
+  /* Controla la duración de la animación globalmente */
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

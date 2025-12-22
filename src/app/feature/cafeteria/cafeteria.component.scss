@@ -1,0 +1,25 @@
+.bar-back {
+    width: 100%;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    z-index: 1;
+    padding: 10px 20px;
+
+    .back-button {
+        background-color: #0c2340;
+        color: #fff;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100%;
+        text-align: center;
+        padding-left: 7px;
+
+        span {
+            font-size: 20px;
+        }
+    }
+}

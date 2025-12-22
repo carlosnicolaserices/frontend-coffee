@@ -1,0 +1,19 @@
+.top-bar-component {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.home-component {
+    padding-top: 60px;
+}
+
+.menu-component {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    float: left;
+    bottom: 0px;
+}
