@@ -1,0 +1,233 @@
+@use 'sass:color'; // Preparamos para el futuro
+
+// --- 1. Variables Globales ---
+$navy: #0c2340;
+$bg-pill: #ebebeb;
+$bg-disabled: #f3f3f3;
+$icon-color: #6366F1;
+$text-body: #374151;
+$text-muted: #6B7280;
+$white: #ffffff;
+$font-family: 'Manrope', sans-serif;
+$border-radius-card: 16px;
+$border-radius-pill: 50px;
+
+// --- 2. Layout Principal ---
+:host {
+    display: block;
+    font-family: $font-family;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+// Botón "Atrás" Flotante
+.search-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 20px;
+    z-index: 10;
+
+    .back-button {
+        background-color: $navy;
+        color: $white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+
+        // Centrado perfecto con Flexbox
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); // Sombra sutil
+        transition: transform 0.2s ease;
+
+        span {
+            font-size: 18px; // Tamaño icono ajustado
+            // Truco visual para iconos ópticos si usas arrow_back_ios antiguo:
+            // margin-left: 4px; 
+        }
+
+        &:active {
+            transform: scale(0.95); // Efecto click
+        }
+    }
+}
+
+// Contenedor Principal
+.search-container {
+    padding: 80px 20px 40px 20px; // Padding top considera el botón absoluto
+    display: flex;
+    flex-direction: column;
+    gap: 24px; // Espacio vertical entre secciones
+}
+
+// --- 3. Componentes ---
+
+// Títulos
+.search-title-wrapper {
+    h1 {
+        font-size: 1.5rem; // 24px aprox
+        font-weight: 800;
+        color: $navy;
+        margin: 0 0 4px 0;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        margin: 0;
+        font-size: 0.9rem;
+        color: $text-muted;
+    }
+}
+
+// Área de Filtros
+.filters-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; // Espacio entre selects
+}
+
+// Componente Select Nativo (Tu magia mejorada)
+.native-select-wrapper {
+    position: relative;
+    width: 100%;
+    height: 54px; // Un poco más alto para mejor touch target
+    background-color: $bg-pill;
+    border-radius: $border-radius-pill;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: color.adjust($bg-pill, $lightness: -3%);
+    }
+
+    .native-input {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        padding: 0 50px 0 24px;
+
+        font-family: $font-family;
+        font-size: 1rem;
+        font-weight: 600;
+        color: $navy;
+        cursor: pointer;
+
+        // Estado Focus
+        &:focus+.arrow-icon {
+            transform: translateY(-50%) rotate(180deg);
+            color: $navy;
+        }
+
+        // Estado Disabled
+        &:disabled {
+            cursor: not-allowed;
+            color: $text-muted;
+
+            &+.arrow-icon {
+                color: rgba($text-muted, 0.5);
+            }
+        }
+
+        // Si el contenedor padre necesita estilo cuando input está disabled
+        &:disabled~.native-select-wrapper {
+            background-color: $bg-disabled;
+        }
+    }
+
+    .arrow-icon {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $icon-color;
+        font-size: 24px;
+        pointer-events: none;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+    }
+}
+
+// --- 4. Resultados (Lista) ---
+.results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+// Tarjeta de Evento/Cafetería
+.event-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none; // Quitar subrayado
+    padding: 8px; // Área clicable interna
+    border-radius: $border-radius-card;
+    transition: background-color 0.2s;
+
+    &:active {
+        background-color: rgba(0, 0, 0, 0.03); // Feedback táctil
+    }
+
+    .img-wrapper {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+        border-radius: $border-radius-card;
+        overflow: hidden;
+        background-color: $bg-pill; // Placeholder mientras carga imagen
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+        overflow: hidden; // Evita desbordes de texto
+
+        .event-name {
+            margin: 0 0 4px 0;
+            font-size: 1rem;
+            font-weight: 700;
+            color: $navy;
+            // Truncar texto largo con puntos suspensivos
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .organizer {
+            margin: 0 0 8px 0;
+            font-size: 0.85rem;
+            color: $text-body;
+            font-weight: 500;
+        }
+
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: $text-muted;
+            font-size: 0.8rem;
+
+            .icon {
+                font-size: 16px;
+            }
+        }
+    }
+}

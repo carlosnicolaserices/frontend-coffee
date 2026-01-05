@@ -1,25 +1,579 @@
-.bar-back {
-    width: 100%;
-    position: fixed;
-    top: 60px;
-    left: 0;
-    z-index: 1;
-    padding: 10px 20px;
+@use 'sass:color';
 
-    .back-button {
-        background-color: #0c2340;
-        color: #fff;
-        height: 40px;
-        width: 40px;
+// Variables
+$navy: #0c2340;
+$white: #ffffff;
+$bg-light: #f3f4f6;
+$text-main: #1f2937;
+$text-muted: #6b7280;
+$green-open: #22c55e;
+$red-closed: #ef4444;
+$radius: 16px;
+
+// Variables
+$bg-open: #f0fdf4; // Verde muy suave (Mint)
+$bg-closed: #fef2f2; // Rosa muy pálido
+$text-open: #166534; // Verde oscuro texto
+$text-closed: #991b1b; // Rojo oscuro texto
+$dot-green: #22c55e;
+$dot-red: #ef4444;
+
+.page-container {
+    background-color: $bg-light;
+    min-height: 100vh;
+    padding-bottom: 40px;
+    position: relative;
+}
+
+// Botón flotante superior
+.floating-nav {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 10;
+
+    .back-btn {
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 100%;
-        text-align: center;
-        padding-left: 7px;
+        width: 40px;
+        height: 40px;
+        background-color: rgba($navy, 0.9);
+        border-radius: 50%;
+        color: $white;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(4px);
 
         span {
             font-size: 20px;
         }
+    }
+}
+
+// Hero Image
+.hero-section {
+    width: 100%;
+    height: 250px; // Altura fija para el banner
+    background-color: $navy; // Fallback
+    // El componente gallery debe ocupar el 100% de esto
+}
+
+// Cuerpo Principal (Efecto Sheet sobre la imagen)
+.content-body {
+    position: relative;
+    margin-top: -20px;
+    background-color: white;
+
+    // IMPORTANTE: box-sizing evita que el padding sume ancho extra
+    box-sizing: border-box;
+    width: 100%;
+    padding: 24px 20px;
+
+    z-index: 2;
+    // overflow: hidden; <--- NO PONGAS ESTO AQUÍ o cortarás las sombras de las tarjetas
+}
+
+// Header de Cafetería
+.cafe-header {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .logo-wrapper {
+        flex-shrink: 0;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid $white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .title-wrapper {
+        h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: $navy;
+            margin: 0 0 4px 0;
+            line-height: 1.2;
+        }
+
+        .location-badge {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: $text-muted;
+            font-size: 0.85rem;
+
+            span.material-symbols-rounded {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background-color: #e5e7eb;
+    margin: 0px 0;
+}
+
+.divider-header {
+    border: 0;
+    height: 1px;
+    background-color: #e5e7eb;
+    margin: 10px 0;
+}
+
+// Secciones Genéricas
+.info-section {
+    margin-bottom: 24px;
+
+    .section-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: $navy;
+        margin-bottom: 12px;
+    }
+
+    .description-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: $text-main;
+    }
+}
+
+// Badges Scroll Horizontal
+.badges-scroll {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 8px; // Espacio scrollbar
+
+    // Ocultar scrollbar
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .pill-badge {
+        flex-shrink: 0;
+        background-color: #e5e7eb;
+        color: $navy;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+}
+
+// Grid de Iconos
+.amenities-grid {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    .icon-box {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background-color: #f3f4f6;
+        color: $navy;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+            font-size: 24px;
+        }
+    }
+}
+
+// Servicios (Wrappable)
+.services-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .service-tag {
+        border: 1px solid #e5e7eb;
+        color: $text-muted;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+}
+
+.schedule-section {
+    width: 100%;
+    padding-bottom: 20px; // Espacio abajo
+    font-family: 'Manrope', sans-serif;
+
+    .section-title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: $navy;
+        margin: 0 0 16px 20px; // Alineado con el padding del scroll
+    }
+}
+
+// CONTENEDOR DE SCROLL HORIZONTAL
+.schedule-scroll {
+    display: flex;
+    gap: 12px; // Espacio entre tarjetas
+    overflow-x: auto;
+    padding: 0 20px; // Padding lateral para que no se corte el primero/último
+
+    // Física de Scroll
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+
+    // Ocultar barra de scroll
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    // --- LA TARJETA ---
+    .schedule-card {
+        flex-shrink: 0; // No aplastar
+        width: 110px; // Ancho fijo cómodo
+        height: 100px; // Altura cuadrada
+
+        background-color: $bg-open;
+        border: 1px solid rgba($dot-green, 0.2); // Borde sutil verde
+        border-radius: 16px;
+        padding: 12px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        scroll-snap-align: start;
+        transition: transform 0.2s ease;
+
+        // Estado Abierto (Default)
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .day-name {
+                font-weight: 700;
+                font-size: 0.9rem;
+                color: $navy;
+                // Truncar si el nombre es muy largo (ej: Miércoles)
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 70px;
+            }
+
+            .status-dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: $dot-green;
+                box-shadow: 0 0 0 2px rgba($dot-green, 0.2);
+            }
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+
+            .hours {
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: $navy;
+            }
+
+            .status-text {
+                font-size: 0.7rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                color: $text-open;
+            }
+        }
+
+        // --- ESTADO CERRADO (Variante) ---
+        &.closed {
+            background-color: $bg-closed;
+            border-color: rgba($dot-red, 0.2);
+
+            .card-header .status-dot {
+                background-color: $dot-red;
+                box-shadow: 0 0 0 2px rgba($dot-red, 0.2);
+            }
+
+            .card-body .hours {
+                color: $text-closed;
+                opacity: 0.7; // Visualmente menos relevante
+                text-decoration: line-through; // Opcional: tachar la hora si está cerrado
+            }
+
+            .card-body .status-text {
+                color: $text-closed;
+            }
+        }
+
+        // Interacción táctil
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+}
+
+.schedule-section {
+    width: 100%;
+    padding: 20px; // Espacio alrededor
+    font-family: 'Manrope', sans-serif;
+
+    .section-title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: $navy;
+        margin-bottom: 16px;
+    }
+}
+
+.schedule-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; // Separación entre filas
+
+    .schedule-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; // Reparte espacio: Izq - Centro - Der
+
+        // Estilos Base (Estado Abierto)
+        background-color: $bg-open;
+        padding: 16px 20px;
+        border-radius: 12px; // Bordes redondeados suaves
+        transition: transform 0.2s ease; // Pequeña animación opcional
+
+        // 1. Nombre del Día
+        .day-name {
+            font-weight: 700;
+            color: $navy;
+            font-size: 0.95rem;
+            width: 100px; // Ancho fijo para alinear columnas
+        }
+
+        // 2. Horas
+        .hours {
+            flex: 1; // Ocupa el espacio central
+            text-align: center;
+            color: $text-open;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        // 3. Punto de Estado
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%; // Círculo perfecto
+            background-color: $dot-green; // Verde por defecto
+            box-shadow: 0 0 0 2px rgba($dot-green, 0.2); // Pequeño brillo alrededor
+        }
+
+        // --- ESTADO CERRADO (Sobreescribe estilos) ---
+        &.closed {
+            background-color: $bg-closed; // Fondo rosa
+
+            .hours {
+                color: $text-closed; // Texto rojo
+            }
+
+            .status-dot {
+                background-color: $dot-red; // Punto rojo
+                box-shadow: 0 0 0 2px rgba($dot-red, 0.2);
+            }
+        }
+    }
+}
+
+// Mapa Preview
+.map-card {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    border-radius: $radius;
+    overflow: hidden;
+    margin-top: 8px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .expand-map-btn {
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        background: $white;
+        border: none;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        color: $navy;
+    }
+}
+
+// --- FULLSCREEN MAP (Igual que antes pero pulido) ---
+.fullscreen-map {
+    position: fixed;
+    inset: 0; // top, right, bottom, left: 0
+    background: $white;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.active {
+        transform: translateY(0);
+    }
+
+    .map-header {
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #e5e7eb;
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: $navy;
+        }
+
+        .map-title {
+            font-weight: 700;
+            color: $navy;
+        }
+    }
+
+    .map-canvas {
+        flex: 1;
+        background-color: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $text-muted;
+
+        span {
+            font-size: 48px;
+            opacity: 0.5;
+        }
+    }
+
+    .map-footer {
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+
+        .address {
+            display: flex;
+            flex-direction: column;
+
+            strong {
+                color: $navy;
+            }
+
+            span {
+                color: $text-muted;
+                font-size: 0.85rem;
+            }
+        }
+
+        .route-btn {
+            background-color: $navy;
+            color: $white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+    }
+}
+
+// 1. BLINDAJE DEL CONTENEDOR PRINCIPAL
+:host {
+    display: block;
+    width: 100%;
+    overflow-x: hidden; // CRÍTICO: Corta cualquier desborde fantasma
+}
+
+.page-container {
+    position: relative;
+    width: 100%;
+    max-width: 100vw; // Asegura que no pase del ancho del viewport
+    overflow-x: hidden; // Refuerzo de seguridad
+    background-color: #f3f4f6;
+    min-height: 100vh;
+
+    // Fix para que el contenido no quede tapado por el menú inferior
+    padding-bottom: 90px;
+}
+
+// 2. CORRECCIÓN DE LOS CONTENEDORES DE SCROLL
+// (Aplica esto a .badges-scroll, .schedule-scroll, .services-wrap)
+.badges-scroll,
+.schedule-scroll {
+    display: flex;
+    gap: 12px;
+
+    // ESTA ES LA CLAVE PARA QUE NO ROMPA EL LAYOUT:
+    width: 100%; // Ocupa el 100% del padre (.content-body)
+    max-width: 100%; // Nunca excedas el padre
+
+    overflow-x: auto; // Habilita el scroll interno
+    padding-bottom: 5px; // Espacio para el touch
+
+    // Física de Scroll
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+
+    // Ocultar barra scroll
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    // Asegurar que los hijos no se encojan
+    .pill-badge,
+    .schedule-card {
+        flex-shrink: 0;
     }
 }

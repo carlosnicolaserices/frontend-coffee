@@ -1,25 +1,88 @@
-.category-list{
-    float: left;
-    width: max-content;
-    list-style: none;
-    position: relative;
-    li{
-        overflow: hidden;
-        background-color: #d1d8e3;
-        margin-left: 30px;
-        float: left;
-        height: 68px;
-        width: 68px;
-        text-align: center;
-        vertical-align: middle;
-        padding-top: 14px;
-        border-radius: 11px;
-         &:first-child{
-            margin-left: 0px;
+@use 'sass:list';
+// Variables Base
+$text-color: #374151; // Gris oscuro para textos
+$font-family: 'Manrope', sans-serif;
+
+// Mapa de Colores (Fondo, Icono)
+$categories: (
+    'tostaduria': (#F3E8FF, #9333EA),
+    // Morado
+    'pasteleria': (#FCE7F3, #DB2777),
+    // Rosa
+    'chocolateria': (#F5E6D3, #8D6E63),
+    // Marrón suave
+    'panaderia': (#FFEDD5, #EA580C),
+    // Naranja
+    'heladeria': (#E0F2FE, #0284C7),
+    // Azul Cielo
+    'restaurant': (#FEE2E2, #DC2626),
+    // Rojo
+    'bar': (#E0E7FF, #4F46E5),
+    // Índigo
+    'cafeteria': (#D1FAE5, #059669) // Verde Esmeralda
+);
+
+.categories-scroll {
+    display: flex;
+    gap: 16px; // Espacio entre círculos
+    overflow-x: auto; // Scroll horizontal
+    padding: 10px 20px; // Padding lateral para que no se corte el primero/último
+    scroll-behavior: smooth;
+
+    // Ocultar barra de scroll fea
+    scrollbar-width: none; // Firefox
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    // Chrome/Safari
+
+    .cat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0; // Evita que se aplasten
+        cursor: pointer;
+        transition: transform 0.2s;
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        // Efecto click
+
+        .label {
+            font-family: $font-family;
+            font-size: 0.75rem; // 12px
+            font-weight: 600;
+            color: $text-color;
+            text-align: center;
+        }
+
+        .circle {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            span {
+                font-size: 28px;
+            }
+
+            // --- AQUÍ ESTÁ EL CAMBIO ---
+            @each $name, $colors in $categories {
+                &.#{$name} {
+                    // Usamos 'list.nth' en lugar de 'nth' a secas
+                    background-color: list.nth($colors, 1);
+                    color: list.nth($colors, 2);
+                }
+            }
+
+            // ---------------------------
         }
     }
-}
-.icon-base{
-    font-size: 35px;
-    color: #0c2340;
 }

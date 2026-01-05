@@ -1,8 +1,8 @@
 .gallery-wrapper {
     position: relative;
     width: 100%;
-    height: 350px; // Altura ajustable según tu diseño (ej. 450px o 50vh)
-    overflow: hidden;
+    height: 250px; // Altura ajustable según tu diseño (ej. 450px o 50vh)
+
     border-radius: 0 0 32px 32px; // Bordes redondeados inferiores (estilo iOS/Airbnb)
     background-color: #e5e7eb; // Placeholder gris mientras carga
 
@@ -47,7 +47,7 @@
 // --- Dots Indicators ---
 .dots-container {
     position: absolute;
-    bottom: 20px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%); // Centrado horizontal perfecto
     display: flex;

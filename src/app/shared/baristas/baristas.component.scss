@@ -1,76 +1,144 @@
-.baristas {
+@use 'sass:color';
+
+// Variables (Consistencia con tu Design System)
+$navy: #0c2340;
+$text-muted: #6B7280;
+$pink-bg: #FCE7F3; // Fondo rosa suave
+$pink-text: #DB2777; // Texto rosa fuerte
+$white: #ffffff;
+$radius: 20px; // Curvatura de la tarjeta
+$font-family: 'Manrope', sans-serif;
+
+.baristas-section {
     width: 100%;
-    float: left;
-    overflow: auto;
-    padding-top: 48px;
-    margin-bottom: 100px;
+    font-family: $font-family;
+    margin-bottom: 24px;
 
-    .baristas-list {
-        float: left;
-        width: 100%;
-        width: max-content;
+    .section-title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: $navy;
+        margin: 0 0 16px 20px; // Alinear con el padding del scroll
+    }
+}
 
-        li {
-            margin-right: 20px;
-            width: 150px;
-            float: left;
-            margin-bottom: 20px;
+.barista-scroll-container {
+    display: flex;
+    gap: 16px; // Espacio entre tarjetas
+    overflow-x: auto;
+    padding: 10px 20px 30px 20px; // Padding abajo extra para la sombra del hover
 
-            .card-barista {
-                background-color: #fff;
+    // Scroll Suave y Snap (Enganche)
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+
+    // Ocultar Scrollbar
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    // --- LA TARJETA ---
+    .barista-card {
+        // Estructura
+        flex-shrink: 0; // CRÍTICO: Evita que se aplasten
+        width: 150px; // Ancho fijo como en tu diseño
+        background-color: $white;
+        border-radius: $radius;
+        padding: 20px 10px; // Espacio interno
+
+        // Layout Interno
+        display: flex;
+        flex-direction: column;
+        align-items: center; // Centrado horizontal
+        text-decoration: none; // Quitar subrayado de enlace
+
+        // Estilos Visuales Base
+        border: 1px solid rgba(0, 0, 0, 0.05); // Borde sutil
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); // Sombra muy suave inicial
+
+        // Transiciones para los estados
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        scroll-snap-align: start; // Donde se detiene el scroll
+
+        // --- ESTADOS DE INTERACCIÓN ---
+
+        // 1. HOVER (Mouse encima)
+        &:hover {
+            transform: translateY(-6px); // Levita
+            box-shadow: 0 12px 20px rgba($navy, 0.15); // Sombra más fuerte
+            border-color: transparent;
+        }
+
+        // 2. ACTIVE (Click presionado)
+        &:active {
+            transform: translateY(-2px) scale(0.98); // Rebote táctil
+            box-shadow: 0 4px 10px rgba($navy, 0.1);
+        }
+
+        // 3. FOCUS (Navegación teclado)
+        &:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba($navy, 0.3); // Anillo de foco
+        }
+
+        // --- ELEMENTOS INTERNOS ---
+
+        .avatar-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            padding: 3px; // Espacio para el borde blanco interno si quisieras
+            border: 1px solid #E5E7EB; // Anillo gris sutil alrededor de la foto
+            margin-bottom: 12px;
+            overflow: hidden;
+
+            img {
                 width: 100%;
-                border-radius: 10px;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
                 display: block;
-                max-height: 180px;
-                min-height: 160px;
-                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-                position: relative;
-                padding-top: 54px;
-
-                .barista-img {
-                    border-radius: 50%;
-                    width: 90px;
-                    position: absolute;
-                    left: 0px;
-                    top: -35px;
-                    margin-left: auto;
-                    margin-right: auto;
-                    right: 0px;
-                }
-
-                .instagram-icon {
-                    width: 15px;
-                    float: left;
-                    margin-top: 2px;
-                }
-
-                h2 {
-                    text-align: center;
-                    margin-top: 5px;
-                    color: #111;
-                    font-size: 17px;
-                    font-weight: bolder;
-                }
-
-                p {
-                    text-align: center;
-                    margin-top: 0px;
-                    padding-bottom: 10px;
-                    color: #111;
-                    font-size: 15px;
-                }
-
-                span {
-                    text-align: center;
-                    margin-top: 0px;
-                    color: #111;
-                    font-size: 13px;
-                    float: left;
-                    width: 100%;
-                    padding: 2px 13px;
-                    color: rgba(12, 35, 64, 0.8509803922);
-                }
             }
+        }
+
+        .info-content {
+            text-align: center;
+            width: 100%;
+
+            .name {
+                display: block; // Forza salto de línea
+                font-size: 0.95rem;
+                font-weight: 800;
+                color: $navy;
+                margin-bottom: 4px;
+                line-height: 1.2;
+            }
+
+            .role {
+                display: block;
+                font-size: 0.75rem; // Texto pequeño
+                color: $text-muted;
+                font-weight: 500;
+                margin-bottom: 12px;
+            }
+
+            .handle {
+                display: inline-block;
+                background-color: $pink-bg;
+                color: $pink-text;
+                font-size: 0.7rem;
+                font-weight: 700;
+                padding: 6px 12px;
+                border-radius: 50px; // Píldora
+                transition: background-color 0.2s;
+            }
+        }
+
+        // Hover específico en la píldora (Opcional)
+        &:hover .handle {
+            background-color: color.adjust($pink-bg, $lightness: -5%);
         }
     }
 }

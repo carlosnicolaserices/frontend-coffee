@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, signal, computed } from '@angular/core'; // 1. Importamos computed
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { CoffeeShopsService } from '../../core/services/coffee-shops.service';
 import { CoffeeShop } from '../../core/models/coffee-shop.model';
 import { SearchBar } from '../../shared/search-bar/search-bar.component';
@@ -9,18 +10,21 @@ import { FilterCategory } from '../../shared/filter-category/filter-category.com
 import { PlaceExperience } from '../../shared/place-experience/place-experience.component';
 import { Baristas } from '../../shared/baristas/baristas.component';
 import { Tostaduria } from '../../shared/tostaduria/tostaduria.component';
+// import { RegionCafeteria } from '../../shared/region-cafeteria/region-cafeteria.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     SearchBar,
     SpecialCoffee,
     FilterCategory,
     PlaceExperience,
     Baristas,
     Tostaduria,
+    // RegionCafeteria,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

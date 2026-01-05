@@ -1,48 +1,87 @@
-.tostaduria-coffee-title {
-    float: left;
-    font-size: 18px;
-    font-weight: bold;
-    color: #0C2340;
-    width: 100%;
-    padding-left: 20px;
+// Variables
+$navy: #0C2340;
+$item-size: 90px; // Ajusta el tamaño de los círculos aquí fácilmente
 
-    .tostaduria-coffee-title-go {
-        float: right;
-        font-size: 12px;
-        color: #0C2340;
-        padding-right: 20px;
+.special-coffee-section {
+    width: 100%;
+    font-family: 'Manrope', sans-serif; // Asegura tu fuente
+}
+
+.section-header {
+    display: flex; // Alinea título y link en una línea
+    justify-content: space-between; // Uno a la izq, otro a la der
+    align-items: center; // Centrado vertical perfecto
+    padding: 0 20px;
+    margin-bottom: 16px;
+
+    .title {
+        font-size: 18px;
+        font-weight: 800;
+        color: $navy;
+        margin: 0; // Quita márgenes por defecto del h3
+    }
+
+    .view-all {
+        font-size: 13px;
+        font-weight: 600;
+        color: $navy; // O usa un color acento si prefieres
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }
 
-.slide-coffe-tostaduria {
-    width: 100%;
-    float: left;
-    overflow: auto;
+.scroll-container {
+    display: flex; // Pone los círculos en fila
+    gap: 16px; // Espacio inteligente entre elementos (sin margins raros)
+    overflow-x: auto; // Habilita scroll horizontal
+    padding: 10px 20px; // Padding para que la sombra no se corte
 
-    .slide-coffe-tostaduria-list {
-        float: left;
-        width: auto;
-        height: 107px;
-        padding-left: 20px;
-        width: max-content;
+    // Mejora UX Móvil (Scroll Snap)
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; // Suavidad en iOS
 
-        li {
-            border-radius: 100%;
-            overflow: hidden;
-            margin: 5px 10px;
-            float: left;
-            width: 100px;
-            height: 100px;
+    // Ocultar barra de scroll fea
+    scrollbar-width: none; // Firefox
 
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    // Chrome/Safari
+
+    .circle-item {
+        flex-shrink: 0; // IMPORTANTE: Evita que los círculos se aplasten
+        width: $item-size;
+        height: $item-size;
+        border-radius: 50%;
+        overflow: hidden; // Recorta la imagen al círculo
+
+        // Estilos visuales
+        border: 3px solid white;
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15); // Sombra elegante (elevation)
+
+        // Para el snap
+        scroll-snap-align: start;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; // La imagen llena el círculo sin deformarse
+            display: block; // Quita espacios fantasma
+            transition: transform 0.3s ease;
+        }
+
+        // Efecto al tocar/pasar mouse
+        &:active,
+        &:hover {
             img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
+                transform: scale(1.1);
             }
 
-            &:first-child {
-                margin-left: 0px;
-            }
+            // Zoom suave
         }
     }
 }

@@ -1,9 +1,12 @@
+@use 'sass:color';
+
 // Search bar
-.search-bar{
+.search-bar {
     width: 100%;
     float: left;
     padding: 0px 16px;
-    .ubicacion-text{
+
+    .ubicacion-text {
         background-color: #fff;
         float: left;
         color: #0C2340;
@@ -12,5 +15,99 @@
         padding: 16px 17px;
         box-shadow: 0px 0px 13px #72727214;
         border-radius: 10px;
+    }
+}
+
+// buscador
+// Variables del Sistema
+$navy: #0c2340; // Tu color principal
+$bg-input: #F9FAFB; // Gris muy claro (fondo)
+$border-color: #E5E7EB; // Borde sutil
+$text-placeholder: #4B5563;
+$transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+.location-select-wrapper {
+    position: relative; // Contexto para posicionar iconos
+    width: 100%;
+    height: 56px; // Altura cómoda para el dedo (Touch target)
+    background-color: $bg-input;
+    border: 1px solid $border-color;
+    border-radius: 16px; // Bordes redondeados modernos
+    transition: $transition;
+    display: flex;
+    align-items: center;
+
+    // --- ESTADOS DEL CONTENEDOR (Hover) ---
+    &:hover {
+        border-color: color.adjust($navy, $lightness: 40%);
+        background-color: #fff; // Se ilumina el fondo
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    // --- ICONO IZQUIERDO (Pin) ---
+    .location-icon {
+        position: absolute;
+        left: 16px;
+        color: $navy; // Color Navy fuerte como en tu imagen
+        font-size: 24px;
+        pointer-events: none; // El click lo atraviesa
+        z-index: 1;
+    }
+
+    // --- EL SELECT NATIVO ---
+    .native-input {
+        // 1. Reset Nativo
+        -webkit-appearance: none;
+        appearance: none;
+
+        // 2. Geometría
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none; // Quitamos el outline azul feo del navegador
+        cursor: pointer;
+
+        // 3. Tipografía y Espaciado
+        padding: 0 48px 0 52px; // Padding: Right(flecha) Left(pin)
+        font-family: 'Manrope', sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: $navy; // Color del texto seleccionado
+
+        // Manejo del color del placeholder "Comunas"
+        &:invalid,
+        option[value=""][disabled] {
+            color: $text-placeholder;
+        }
+
+        // --- LOGICA DE ROTACIÓN (Focus State) ---
+        // Cuando el input tiene foco (usuario interactuando):
+        &:focus {
+
+            // 1. Buscamos al hermano (.chevron-icon) y lo rotamos
+            &~.chevron-icon {
+                transform: translateY(-50%) rotate(180deg);
+                color: $navy; // La flecha se pone Navy al abrir
+            }
+        }
+    }
+
+    // Hack visual para cuando el wrapper tiene el foco (usando focus-within si el navegador lo soporta)
+    &:focus-within {
+        border-color: $navy; // El borde del contenedor se pinta Navy
+        box-shadow: 0 0 0 4px rgba($navy, 0.1); // Anillo de foco suave
+    }
+
+    // --- ICONO DERECHO (Flecha) ---
+    .chevron-icon {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%) rotate(0deg); // Estado inicial
+        color: #9CA3AF; // Gris suave por defecto
+        font-size: 24px;
+        pointer-events: none;
+        transition: transform 0.3s ease, color 0.3s ease;
     }
 }

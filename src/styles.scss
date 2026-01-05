@@ -18,13 +18,13 @@
   --color-secondary: #e3d5ca;
 
   /* 5. Textos */
-  --color-text-main: #ffffff;
+  --color-text-main: #111;
   /* Títulos */
   --color-text-body: #d1d5db;
   /* Párrafos */
   --color-text-muted: #6b7280;
   /* Subtítulos / Fechas */
-
+  --font-main: "Outfit", sans-serif;
   /* 6. Estados */
   --color-success: #10b981;
   --color-error: #ef4444;
@@ -34,7 +34,10 @@
 body {
   background-color: var(--color-bg);
   color: var(--color-text-main);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-main);
+  // Activa el antialiasing para que se vea nítido en iPhone/Android
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   touch-action: none;
   /* Ajustes Mobile */
   -webkit-font-smoothing: antialiased;
@@ -49,7 +52,6 @@ body {
 
   // Evitar el "rebote" elástico al scrollear en iOS
   overscroll-behavior-y: none;
-  background-color: #0c2340; // Color de fondo del "borde" nativo
 }
 
 /* DEFINICIÓN GLOBAL DE ICONOS */
@@ -88,9 +90,17 @@ body {
 }
 
 
-
-
-
+// base de colores propuestos
+// #0C2340
+// #293E57
+// #293E57
+// #46586E
+// #46586E
+// #637385
+// #728091
+// #808D9C
+// #BAC2CA
+// #F4F6F8
 
 // @keyframes fade-in {
 //   from {

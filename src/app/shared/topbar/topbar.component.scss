@@ -1,10 +1,51 @@
-header {
-    /* Esto empuja el header hacia abajo si hay una cámara en la pantalla (iPhone X+) */
-    padding-top: env(safe-area-inset-top);
-    /* Ajuste para que el padding no afecte la altura visual del contenido */
-    box-sizing: content-box;
-}
-.bg-color-cup{
-    background-color:#0c2340;
-    box-shadow: 0px 2px 4px #1111114a
+// Variables
+$navy: #0c2340;
+$white: #ffffff;
+
+.app-header {
+    position: sticky; // O 'fixed' si quieres que flote sobre todo
+    top: 0;
+    z-index: 100; // Siempre encima del contenido
+    width: 100%;
+    background-color: $white; // Fondo blanco puro
+    padding: 16px 20px;
+
+    // 1. LA CLAVE DE LA SUAVIDAD:
+    // Definimos qué propiedad se anima y cuánto tarda (0.3s es el estándar de UI)
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        padding 0.3s ease; // Opcional: si quieres que se achique un poco
+
+    // Estructura interna (Flexbox para separar iconos)
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    // Estilos de tus iconos (Basado en tu imagen)
+    .icon-circle {
+        width: 40px;
+        height: 40px;
+        box-shadow: 0px 2px 4px #1111114a;
+        background-color: $navy;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+
+    .icon-profile {
+        color: $navy;
+        font-size: 28px;
+    }
+
+    // 2. EL ESTADO 'SCROLLED' (Cuando bajas)
+    &.scrolled {
+        // Sombra suave y difusa (Elevation 2)
+        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
+
+        // Opcional: reducir un poco el padding para dar sensación de "compacto"
+        // padding: 12px 20px; 
+    }
 }

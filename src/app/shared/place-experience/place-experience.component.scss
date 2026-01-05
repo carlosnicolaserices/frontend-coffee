@@ -1,87 +1,112 @@
-.place-experience__list {
-    float: left;
+// Variables
+$navy: #0c2340;
+$radius: 24px; // Curvatura pronunciada como en la imagen
+$font-family: 'Manrope', sans-serif;
+
+.experiences-section {
     width: 100%;
-    width: max-content;
+    font-family: $font-family;
 
-    &__item {
-        position: relative;
-        float: left;
-        width: 280px;
-        background-color: #fff;
-        border-radius: 6px;
-        overflow: hidden;
-        margin-right: 30px;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-
-        &__banner {
-            float: left;
-            width: 63%;
-            border-radius: 5px;
-            position: relative;
-
-            &__icon {
-                background-color: #f6f1ec;
-                padding: 3px 12px;
-                float: left;
-                width: auto;
-                color: #413c3a;
-                border-radius: 5px;
-                font-size: 14px;
-                font-weight: 600;
-                margin-bottom: 10px;
-            }
-
-            &__text {
-                float: left;
-                width: 100%;
-                color: #413c3a;
-                font-size: 20px;
-                font-weight: bold;
-                padding-top: 10px;
-                line-height: 24px;
-                text-align: left;
-            }
-
-            &__content {
-                padding: 13px;
-                float: left;
-                width: 100%;
-                min-height: 177px;
-            }
-
-            &__link {
-                background-color: rgba(12, 35, 64, 0.8509803922);
-                padding: 6px 20px;
-                float: left;
-                width: auto;
-                color: #FFF;
-                border-radius: 5px;
-                font-size: 10px;
-                font-weight: 600;
-                position: absolute;
-                bottom: 10px;
-                left: 10px;
-            }
-        }
+    .section-title {
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-transform: uppercase; // Mayúsculas como en el diseño
+        letter-spacing: 0.5px;
+        color: $navy;
+        margin: 0 0 16px 20px;
+        opacity: 0.9;
     }
 }
 
-// Estilos del Contenedor de Imagen (Derecha)
-.img-wrapper {
-    width: 37%;
-    margin: 0;
-    position: relative;
-    float: left;
-    overflow: hidden;
-    height: 177px;
+.experiences-scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 10px 20px 30px 20px; // Padding extra abajo para sombras
 
-    // AQUÍ ESTA LA MAGIA
-    img {
-        width: 111px;
-        height: 177px;
-        object-fit: cover;
-        object-position: left;
-        display: block;
-        position: absolute;
+    // Scroll Snap (Enganche suave)
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+
+    // Ocultar barra scroll
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    // --- LA TARJETA ---
+    .experience-card {
+        position: relative; // Contexto para el texto absoluto
+        flex-shrink: 0; // No aplastar
+        width: 160px; // Ancho fijo
+        height: 220px; // Formato vertical (Portrait)
+        border-radius: $radius;
+        overflow: hidden; // Recorta la imagen en las esquinas
+        text-decoration: none;
+
+        // Sombra suave base
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+            box-shadow 0.3s ease;
+
+        scroll-snap-align: start;
+
+        // 1. IMAGEN DE FONDO
+        .card-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; // Llenar todo sin deformar
+            display: block;
+            transition: transform 0.5s ease; // Zoom lento en hover
+        }
+
+        // 2. GRADIENTE TÉCNICO (Legibilidad)
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%; // Ocupa el 60% inferior
+            // Gradiente de transparente a negro oscuro
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.85) 100%);
+
+            // Alinear texto abajo
+            display: flex;
+            align-items: flex-end;
+            padding: 16px;
+        }
+
+        // 3. TEXTO
+        .card-text {
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); // Sombra extra al texto
+        }
+
+        // --- ESTADOS DE INTERACCIÓN ---
+
+        // Hover: Levantar y Zoom sutil
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba($navy, 0.25);
+
+            .card-bg {
+                transform: scale(1.05); // Efecto Ken Burns suave
+            }
+        }
+
+        // Active: Click presionado
+        &:active {
+            transform: scale(0.96); // Rebote
+        }
+
+        // Focus: Accesibilidad
+        &:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba($navy, 0.4);
+        }
     }
 }

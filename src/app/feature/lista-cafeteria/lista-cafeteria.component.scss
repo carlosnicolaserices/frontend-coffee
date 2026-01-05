@@ -1,0 +1,211 @@
+@use 'sass:color'; // Importante para funciones de color modernas
+
+// --- Variables Globales ---
+$navy: #0c2340;
+$bg-page: #ffffff;
+$bg-pill: #ebebeb;
+$text-body: #374151;
+$text-muted: #6B7280;
+$icon-color: #6366F1;
+$font-main: 'Manrope', sans-serif;
+$radius-card: 16px;
+$radius-pill: 50px;
+
+// --- Layout Base ---
+.page-layout {
+    font-family: $font-main;
+    background-color: $bg-page;
+    min-height: 100vh;
+    position: relative;
+}
+
+// --- Header (Sticky) ---
+.sticky-header {
+    position: sticky; // Se pega al techo al hacer scroll
+    top: 0;
+    z-index: 50; // Encima del contenido
+    background-color: rgba($bg-page, 0.95); // Ligeramente transparente
+    backdrop-filter: blur(8px); // Efecto vidrio (iOS style)
+
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px; // Espacio entre flecha y buscador
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); // Línea sutil separadora
+
+    // Botón Volver (Redondo perfecto)
+    .back-button {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        background-color: $navy;
+        color: white;
+        border-radius: 50%;
+
+        // Centrado Flexbox (Adiós hacks de padding)
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: transform 0.2s;
+
+        span {
+            font-size: 20px;
+        }
+
+        &:active {
+            transform: scale(0.9); // Efecto rebote al tocar
+        }
+    }
+
+    // Wrapper del Buscador (Ocupa el resto del espacio)
+    .search-wrapper {
+        flex: 1;
+    }
+}
+
+// --- Select Nativo (Buscador) ---
+.native-select {
+    position: relative;
+    width: 100%;
+    height: 48px;
+    background-color: $bg-pill;
+    border-radius: $radius-pill;
+    transition: background-color 0.2s;
+
+    &:hover {
+        // Reemplazo moderno de darken()
+        background-color: color.adjust($bg-pill, $lightness: -3%);
+    }
+
+    select {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        padding: 0 40px 0 20px; // Padding derecho para no tapar flecha
+
+        font-family: $font-main;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: $navy;
+        cursor: pointer;
+
+        // Rotación de flecha al abrir
+        &:focus+.arrow-icon {
+            transform: translateY(-50%) rotate(180deg);
+            color: $navy;
+        }
+    }
+
+    .arrow-icon {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $icon-color;
+        pointer-events: none;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+// --- Contenedor de Lista ---
+.content-container {
+    padding: 20px;
+}
+
+.section-header {
+    margin-bottom: 20px;
+
+    .title {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: $navy;
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+        color: $text-muted;
+    }
+}
+
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+// --- Tarjeta de Cafetería ---
+.event-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    background: white; // Asegurar fondo
+
+    // Feedback táctil
+    transition: opacity 0.2s, transform 0.1s;
+
+    &:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+
+    .img-wrapper {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+        border-radius: $radius-card;
+        overflow: hidden;
+        background-color: $bg-pill; // Placeholder gris mientras carga
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    .card-content {
+        flex: 1;
+        min-width: 0; // Fix para textos largos en Flexbox
+
+        .event-name {
+            margin: 0 0 4px 0;
+            font-size: 1rem;
+            font-weight: 700;
+            color: $navy;
+            // Truncar texto largo
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .organizer {
+            margin: 0 0 8px 0;
+            font-size: 0.85rem;
+            color: $text-body;
+            font-weight: 500;
+        }
+
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: $text-muted;
+            font-size: 0.75rem;
+            font-weight: 600;
+
+            .icon {
+                font-size: 16px;
+            }
+        }
+    }
+}

@@ -1,0 +1,71 @@
+<header class="search-header">
+  <a routerLink="/" class="back-button" aria-label="Volver al inicio">
+    <span class="material-symbols-outlined">arrow_back_ios_new</span>
+  </a>
+</header>
+
+<main class="search-container">
+  <div class="search-title-wrapper">
+    <h1>Buscador de cafeterías</h1>
+    <p class="subtitle">Encuentra tu café ideal por zona</p>
+  </div>
+
+  <section class="filters-wrapper">
+    <div class="native-select-wrapper">
+      <select class="native-input" name="region" id="region" disabled>
+        <option value="" disabled selected>Región</option>
+        <option value="biobio">Biobío</option>
+      </select>
+      <span class="material-symbols-rounded arrow-icon">expand_more</span>
+    </div>
+
+    <div class="native-select-wrapper">
+      <select class="native-input" name="comuna" id="comuna">
+        <option value="" disabled selected>Selecciona una comuna</option>
+        <option value="concepcion">Concepción</option>
+        <option value="talcahuano">Talcahuano</option>
+        <option value="chiguayante">Chiguayante</option>
+        <option value="san_pedro">San Pedro de la Paz</option>
+        <option value="hualpen">Hualpén</option>
+        <option value="penco">Penco</option>
+        <option value="tome">Tomé</option>
+        <option value="coronel">Coronel</option>
+        <option value="lota">Lota</option>
+        <option value="hualqui">Hualqui</option>
+        <option value="santa_juana">Santa Juana</option>
+        <option value="florida">Florida</option>
+      </select>
+      <span class="material-symbols-rounded arrow-icon">expand_more</span>
+    </div>
+  </section>
+
+  <section class="results-list">
+    <a routerLink="/cafeteria/1" class="event-card">
+      <div class="img-wrapper">
+        <img src="assets/1.jpeg" alt="Foto de Cafetería Papafita" loading="lazy" />
+      </div>
+      <div class="card-content">
+        <h4 class="event-name">Cafeteria PAPAFITA</h4>
+        <p class="organizer">O'Higgins 500, Concepción</p>
+        <div class="meta-info">
+          <span class="material-symbols-rounded icon">schedule</span>
+          <span>Lun a Vie 8:00 - 18:00</span>
+        </div>
+      </div>
+    </a>
+
+    <a routerLink="/cafeteria/2" class="event-card">
+      <div class="img-wrapper">
+        <img src="assets/1.jpeg" alt="Foto de Cafetería" loading="lazy" />
+      </div>
+      <div class="card-content">
+        <h4 class="event-name">Cafeteria Central</h4>
+        <p class="organizer">Barros Arana 400, Concepción</p>
+        <div class="meta-info">
+          <span class="material-symbols-rounded icon">schedule</span>
+          <span>Abierto ahora</span>
+        </div>
+      </div>
+    </a>
+  </section>
+</main>

@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss',
 })
-export class SearchBar {
-
-}
+export class SearchBar {}

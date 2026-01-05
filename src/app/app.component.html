@@ -1,7 +1,13 @@
+@if (showHeader()) {
 <div class="top-bar-component">
   <app-topbar></app-topbar>
 </div>
-<main class="bg-coffee-dark home-component">
+}
+<main
+  class="bg-coffee-dark home-component"
+  [class.home-component]="!isCafeteriaRoute()"
+  [class.cafeteria-detail]="isCafeteriaRoute()"
+>
   <router-outlet></router-outlet>
 </main>
 <div class="menu-component">

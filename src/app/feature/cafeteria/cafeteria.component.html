@@ -1,9 +1,109 @@
-<div class="bar-back">
-  <a href="#" routerLink="/" class="back-button">
-    <span class="material-symbols-outlined">arrow_back_ios</span></a
-  >
+<div class="page-container">
+  <div class="floating-nav">
+    <a routerLink="/" class="back-btn">
+      <span class="material-symbols-rounded">arrow_back_ios_new</span>
+    </a>
+  </div>
+
+  <section class="hero-section">
+    <image-gallery [items]="galleryImages"></image-gallery>
+  </section>
+
+  <main class="content-body">
+    <header class="cafe-header">
+      <div class="logo-wrapper">
+        <img [src]="cafeteriaInfo.logo" alt="Logo" loading="lazy" />
+      </div>
+      <div class="title-wrapper">
+        <h1>{{ cafeteriaInfo.name }}</h1>
+        <div class="location-badge">
+          <span class="material-symbols-rounded">location_on</span>
+          <span>{{ cafeteriaInfo.address }}</span>
+        </div>
+      </div>
+    </header>
+
+    <hr class="divider-header" />
+
+    <section class="info-section">
+      <h3 class="section-title">Tipo de negocio</h3>
+      <div class="badges-scroll">
+        <span *ngFor="let badge of badges" class="pill-badge">{{ badge }}</span>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <h3 class="section-title">Descripción</h3>
+      <p class="description-text">{{ cafeteriaInfo.description }}</p>
+    </section>
+
+    <section class="info-section">
+      <h3 class="section-title">Comodidades</h3>
+      <div class="amenities-grid">
+        <div *ngFor="let item of amenities" class="icon-box" [title]="item.label">
+          <span class="material-symbols-rounded">{{ item.icon }}</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <h3 class="section-title">Servicios y Eventos</h3>
+      <div class="services-wrap">
+        <span *ngFor="let s of services" class="service-tag">{{ s }}</span>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="schedule-section">
+      <h3 class="section-title">Horario de Atención</h3>
+
+      <div class="schedule-scroll">
+        <div *ngFor="let day of schedule" class="schedule-card" [class.closed]="!day.isOpen">
+          <div class="card-header">
+            <span class="day-name">{{ day.day }}</span>
+            <span class="status-dot"></span>
+          </div>
+
+          <div class="card-body">
+            <span class="hours">{{ day.hours }}</span>
+            <span class="status-text">
+              {{ day.isOpen ? 'Abierto' : 'Cerrado' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-section map-section">
+      <h3 class="section-title">Ubicación</h3>
+      <div class="map-card" (click)="openMap()">
+        <img src="https://placehold.co/600x300/e5e7eb/0c2340?text=Toca+para+ver+mapa" alt="Mapa" />
+        <button class="expand-map-btn">
+          <span class="material-symbols-rounded">open_in_full</span>
+        </button>
+      </div>
+    </section>
+  </main>
 </div>
 
-<section class="cafeteria-detail">
-  <image-gallery [items]="galleryImages"></image-gallery>
-</section>
+<div class="fullscreen-map" [class.active]="isMapOpen()">
+  <div class="map-header">
+    <button class="close-btn" (click)="closeMap()">
+      <span class="material-symbols-rounded">close</span>
+    </button>
+    <span class="map-title">Ubicación</span>
+  </div>
+
+  <div class="map-canvas">
+    <span class="material-symbols-rounded placeholder-icon">map</span>
+  </div>
+
+  <div class="map-footer">
+    <div class="address">
+      <strong>{{ cafeteriaInfo.name }}</strong>
+      <span>{{ cafeteriaInfo.address }}</span>
+    </div>
+    <button class="route-btn"><span class="material-symbols-rounded">directions</span> Ir</button>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,8 +6,16 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './topbar.component.html', // <--- Apunta al archivo HTML
-  styleUrl: './topbar.component.scss'     // <--- Apunta al archivo SCSS
+  styleUrl: './topbar.component.scss', // <--- Apunta al archivo SCSS
 })
 export class TopbarComponent {
-  // Aquí pondremos la lógica del usuario más adelante
+  // Variable de estado
+  isScrolled: boolean = false;
+
+  // Escuchamos el evento de scroll globalmente
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    // Si bajamos más de 20px, activamos la sombra
+    this.isScrolled = window.scrollY > 20;
+  }
 }

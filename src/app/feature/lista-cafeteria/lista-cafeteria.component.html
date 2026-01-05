@@ -1,0 +1,57 @@
+<div class="page-layout">
+  <header class="sticky-header">
+    <a routerLink="/" class="back-button" aria-label="Volver atrás">
+      <span class="material-symbols-rounded">arrow_back_ios_new</span>
+    </a>
+
+    <div class="search-wrapper">
+      <div class="native-select">
+        <select name="comuna" id="comuna-select">
+          <option value="" disabled selected>Seleccionar Comuna</option>
+          <option value="concepcion">Concepción</option>
+          <option value="talcahuano">Talcahuano</option>
+          <option value="san_pedro">San Pedro de la Paz</option>
+          <option value="chiguayante">Chiguayante</option>
+        </select>
+        <span class="material-symbols-rounded arrow-icon">expand_more</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="content-container">
+    <div class="section-header">
+      <h3 class="title">Listado de Cafeterías</h3>
+      <span class="subtitle">Resultados encontrados</span>
+    </div>
+
+    <div class="events-list">
+      <a routerLink="/cafeteria/1" class="event-card">
+        <div class="img-wrapper">
+          <img src="assets/1.jpeg" alt="Cafetería Papafita" loading="lazy" />
+        </div>
+        <div class="card-content">
+          <h4 class="event-name">Cafetería PAPAFITA</h4>
+          <p class="organizer">O'Higgins 500, Concepción</p>
+          <div class="meta-info">
+            <span class="material-symbols-rounded icon">schedule</span>
+            <span>Lun a Vie 8:00 - 18:00</span>
+          </div>
+        </div>
+      </a>
+
+      <a routerLink="/cafeteria/2" class="event-card">
+        <div class="img-wrapper">
+          <img src="assets/1.jpeg" alt="Cafetería 2" loading="lazy" />
+        </div>
+        <div class="card-content">
+          <h4 class="event-name">Cafetería Central</h4>
+          <p class="organizer">Barros Arana 400, Concepción</p>
+          <div class="meta-info">
+            <span class="material-symbols-rounded icon">schedule</span>
+            <span>Abierto ahora</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </main>
+</div>
